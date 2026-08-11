@@ -341,7 +341,7 @@ function renderMainPortal() {
     <script src="https://static.zohocdn.com/catalyst/sdk/js/4.6.2/catalystWebSDK.js"></script>
     <script src="/__catalyst/sdk/init.js"></script>
 </body>
-</html>`}]}{;
+</html>`;
 }
 
 function renderUnifiedExamPanel(name, stream, segments) {
@@ -684,7 +684,7 @@ function renderTeacherDashboard(data) {
     <script src="https://static.zohocdn.com/catalyst/sdk/js/4.6.2/catalystWebSDK.js"></script>
     <script src="/__catalyst/sdk/init.js"></script>
 </body>
-</html>`}]}{;
+</html>`;
 }
 
 app.get('/', (req, res) => {
