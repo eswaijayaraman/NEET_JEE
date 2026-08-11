@@ -338,8 +338,10 @@ function renderMainPortal() {
             <button type="submit">Proceed to Examination Board</button>
         </form>
     </div>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/4.6.2/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
 </body>
-</html>`;
+</html>`}]}{;
 }
 
 function renderUnifiedExamPanel(name, stream, segments) {
@@ -497,6 +499,8 @@ function renderUnifiedExamPanel(name, stream, segments) {
             }
         }, 1000);
     </script>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/4.6.2/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
 </body>
 </html>`;
 }
@@ -611,6 +615,8 @@ function renderAssessmentResult(name, stream, breakdown, detailedReport, grandTo
             <a href="/" style="background-color:#1f497d; color:white; text-decoration:none; padding:12px 28px; border-radius:4px; font-weight:bold;">Return to Portal</a>
         </div>
     </div>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/4.6.2/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
 </body>
 </html>`;
 }
@@ -675,8 +681,10 @@ function renderTeacherDashboard(data) {
             </tbody>
         </table>
     </div>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/4.6.2/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
 </body>
-</html>`;
+</html>`}]}{;
 }
 
 app.get('/', (req, res) => {
