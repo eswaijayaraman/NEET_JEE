@@ -4,7 +4,8 @@
   "description": "NEET/JEE assessment portal migrated to Node.js for Zoho Catalyst",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "echo \"No build step required for this Node backend\""
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
