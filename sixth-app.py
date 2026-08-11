@@ -9,7 +9,6 @@ from datetime import datetime
 from docx import Document  
 from docx.oxml.ns import qn
 from flask import Flask, render_template_string, request, redirect, url_for, Response
-from docxlatex import Document as DocxLatexDocument
 
 app = Flask(__name__)
  
@@ -118,6 +117,31 @@ def wrap_latex_in_dollars(text):
         return text
     if '\\' in text and '$' not in text:
         return re.sub(r'(\\[a-zA-Z]+(?:\{[^{}]*\}|\^\{[^{}]*\}|_[^{}]*|[\s\d\w\+\-\=\|\(\)])+)', r'$\1$', text)
+    return text
+
+def format_log_subscripts_safe(text):
+    """Format subscripts and superscripts while preserving HTML img tags."""
+    if not text:
+        return text
+    
+    # Extract and protect img tags to prevent corruption of filenames
+    img_tags = []
+    img_pattern = r'<img\s+[^>]*>'
+    
+    def save_img(match):
+        img_tags.append(match.group(0))
+        return f"__IMG_PLACEHOLDER_{len(img_tags) - 1}__"
+    
+    # Replace img tags with placeholders
+    text = re.sub(img_pattern, save_img, text)
+    
+    # Apply normal formatting
+    text = format_log_subscripts(text)
+    
+    # Restore img tags
+    for idx, img_tag in enumerate(img_tags):
+        text = text.replace(f"__IMG_PLACEHOLDER_{idx}__", img_tag)
+    
     return text
 
 def format_log_subscripts(text):
@@ -252,7 +276,7 @@ def load_questions_from_docx(file_path):
                 if current_question:
                     questions_list.append({
                         "id": q_counter,
-                        "question": format_log_subscripts(current_question),
+                        "question": format_log_subscripts_safe(current_question),
                         "options": [format_log_subscripts(opt) for opt in current_options],
                         "correct": current_correct.strip()
                     })
@@ -291,7 +315,7 @@ def load_questions_from_docx(file_path):
         if current_question:
             questions_list.append({
                 "id": q_counter,
-                "question": format_log_subscripts(current_question),
+                "question": format_log_subscripts_safe(current_question),
                 "options": [format_log_subscripts(opt) for opt in current_options],
                 "correct": current_correct.strip()
             })
